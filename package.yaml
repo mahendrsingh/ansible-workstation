@@ -1,0 +1,31 @@
+- hosts: web
+  remote_user: root
+  become: yes
+  tasks:
+  - name: Install Apache
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+      
+  - name: Update Apache
+    apt:
+      name: apache2
+      state: latest 
+
+  - name: Remove Apache
+    apt:
+      name: apache2
+      state: absent
+      
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: yes 
+   
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes

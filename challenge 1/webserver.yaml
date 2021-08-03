@@ -1,0 +1,20 @@
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+    - name: Append text into index file
+      shell: >-
+        echo "Hi Folks. You have successfully deployed the server" >
+        /var/www/html/index.html
+      args:
+        executable: /bin/bash
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
+    - name: AWS Instance info
+      shell:
+        cmd: 'curl http://169.254.169.254/latest/meta-data/public-ipv4'
+      register: ip
+    - name: debug the Ip
+      debug: var=ip.stdout_lines

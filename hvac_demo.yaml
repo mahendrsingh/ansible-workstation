@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars:
+    - vault_token:s-dcfvgbhnjmk54gfcfvgbhjn
+    - vault_url:http://127.0.0.1:8200
+    - db_pass: "{{ lookup('hashi_vault', 'secret= {{ vault_token }}', '')}}"
+    - system_pass:
+  tasks:
+    - name: Display value of db password
+      debug:
+        msg: Db Password: "{{ db_pass }}"
+    - name: Display value of db password
+      debug:
+        msg: Db Password: "{{ system_pass }}"

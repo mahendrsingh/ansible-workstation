@@ -1,0 +1,45 @@
+- hosts: web
+  remote_user: root
+  become: yes
+  tasks:
+  - name: Install Apache
+    apt:
+      name: apache2
+      state: present
+    notify:
+      - Restart apache
+
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: present
+    notify:
+      - Restart apache
+
+  - name: Install nano
+    apt:
+      name: nano
+      state: present
+    notify:
+      - Restart apache
+  
+  - name: Remove Apache
+    apt:
+      name: apache2
+      state: absent
+
+  - name: Remove nano
+    apt:
+      name: nano
+      state: absent
+
+  - name: Remove nginx
+    apt:
+      name: nginx
+      state: absent
+
+  handlers:
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted

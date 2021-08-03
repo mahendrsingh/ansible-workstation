@@ -1,0 +1,23 @@
+- hosts: web
+  remote_user: root
+  become: yes
+  vars:
+   packages:
+    - apache2
+    - nano
+    - vim
+
+  tasks:
+  - name: Install software
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ packages }}"
+
+  - name: Remove softwares
+    apt:
+      name:
+       - nano
+       - vim
+       - apache2
+      state: absent

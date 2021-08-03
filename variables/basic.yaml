@@ -1,0 +1,9 @@
+- hosts: web
+  vars:
+    basic_var: "This is first variables"
+
+  tasks:
+  - name: Display Value
+    debug:
+      msg: "{{ basic_var }}"
+   

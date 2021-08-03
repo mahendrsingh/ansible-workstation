@@ -1,0 +1,9 @@
+- name: Remove Apache
+  apt:
+    name: apache2
+    state: absent
+
+- name: remove index file
+  file:
+    path: /var/www/html/index.html
+    state: absent

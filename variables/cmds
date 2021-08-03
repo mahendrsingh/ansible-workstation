@@ -1,0 +1,4 @@
+2047  ansible-playbook -e  "@vars.yaml" vars_file_demo.yaml 
+ 2048  ansible-playbook -i ../aws.ini multi.yaml 
+ 2049  ansible-playbook vars_file_demo.yaml 
+ 2050  ansible-playbook -e  "http_port=80" vars_file_demo.yaml 

@@ -1,0 +1,24 @@
+- hosts: web
+  remote_user: root
+  become: yes
+  tasks:
+  - name: Install Apache
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+  - name: Restart the Apache
+    service:
+      name: apache2
+      state: restarted
+
+  - name: Enable service apache2, and not touch the state
+    ansible.builtin.service:
+      name: apache2
+      enabled: yes
+
+  - name: Remove Apache
+    apt:
+      name: apache2
+      state: absent
+
