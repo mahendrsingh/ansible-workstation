@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Error Handling
+    block:
+      - name: No error
+        debug:
+          msg: "Running fine"
+      - name: going to fail
+        command: /bin/basf
+      - name: Never runs
+        debug:
+          msg: never run due to error
+    rescue:
+      - name: Error was found
+        debug:  
+          msg: "Error has occured"         
+             
+    

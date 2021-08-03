@@ -13,9 +13,10 @@ resource "aws_instance" "ansible_tf" {
 	tags = {
 		name = "ansible"
 	}
-
+	/*
 	provisioner "local-exec" {
 		command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook --private-key /home/ms/Documents/ritesh-ec2.pem -i ${aws_instance.ansible_tf.public_ip}, playbook.yaml"
 	  
 	}
+	*/
 }
